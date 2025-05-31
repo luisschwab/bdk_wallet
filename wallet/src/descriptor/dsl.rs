@@ -826,17 +826,16 @@ macro_rules! fragment {
 #[cfg(test)]
 mod test {
     use alloc::string::ToString;
-    use bitcoin::secp256k1::Secp256k1;
-    use miniscript::descriptor::{DescriptorPublicKey, KeyMap};
-    use miniscript::{Descriptor, Legacy, Segwitv0};
-
     use core::str::FromStr;
+
+    use bitcoin::{bip32, secp256k1::Secp256k1, Network, NetworkKind, PrivateKey};
+    use miniscript::{
+        descriptor::{DescriptorPublicKey, KeyMap},
+        Descriptor, Legacy, Segwitv0,
+    };
 
     use crate::descriptor::{DescriptorError, DescriptorMeta};
     use crate::keys::{DescriptorKey, IntoDescriptorKey, ValidNetworkKinds};
-    use bitcoin::bip32;
-    use bitcoin::NetworkKind;
-    use bitcoin::PrivateKey;
 
     // Test the `descriptor!()` macro.
 
@@ -854,7 +853,7 @@ mod test {
             let child_desc = desc
                 .at_derivation_index(i as u32)
                 .expect("i is not hardened");
-            let address = child_desc.address(bitcoin::Network::Regtest.into());
+            let address = child_desc.address(Network::Regtest);
             if let Ok(address) = address {
                 assert_eq!(address.to_string(), *expected.get(i).unwrap());
             } else {
