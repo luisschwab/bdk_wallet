@@ -169,3 +169,16 @@ jobs:
         env: 
           RUSTDOCFLAGS: "-D warnings --cfg bdk_wallet_unstable"
         run: cargo doc --workspace --all-features --no-deps
+
+  check-signed-commits:
+    name: Check signed commits
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify all commits are GPG signed
+        run: ./ci/check-signed-commits.sh "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}"
