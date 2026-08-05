@@ -112,6 +112,10 @@ println!("Next receive address: {}", address_info.address);
 Ok::<_, anyhow::Error>(())
 ```
 
+## Security Policy
+
+To report a security issue, please refer to the [security policy](SECURITY.md).
+
 ## Minimum Supported Rust Version (MSRV)
 
 The libraries in this repository maintain a MSRV of 1.85.0.
