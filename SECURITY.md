@@ -1,8 +1,12 @@
 # Security Policy
 
-To report security issues send an email to `security AT bitcoindevkit DOT org` (not for support).
+To report security issues, either
 
-The following key may be used to communicate sensitive information to developers:
+- send an email to `security AT bitcoindevkit DOT org` (not for support), or
+- open a security advisory on GitHub at
+[`https://github.com/bitcoindevkit/bdk_wallet/security/advisories`](https://github.com/bitcoindevkit/bdk_wallet/security/advisories).
+
+The following key may be used to communicate sensitive information to BDK via email:
 
 | Name | Fingerprint |
 | ---- | ----------- |
